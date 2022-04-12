@@ -1,24 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pipex.c                                            :+:      :+:    :+:   */
+/*   ft_strlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: obouizga <obouizga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/05 13:52:40 by obouizga          #+#    #+#             */
-/*   Updated: 2022/04/12 23:18:03 by obouizga         ###   ########.fr       */
+/*   Created: 2022/04/12 13:55:09 by obouizga          #+#    #+#             */
+/*   Updated: 2022/04/12 13:57:39 by obouizga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
-// ./pipex infile "ls -l" "wc -l" outfile
-//	[0]    [1]      [2]    [3]    [4]
-int	main(int ac, char **av, char **env)
-{
-	char	**paths;
 
-	(void) ac;
-	paths = get_paths(env[6]);
-	check_access_exec(paths, av, env);
-	return (0);
+size_t	ft_strlen(char *s)
+{
+	size_t	len;
+
+	len = 0;
+	while (s[len])
+		len++;
+	return (len);
 }

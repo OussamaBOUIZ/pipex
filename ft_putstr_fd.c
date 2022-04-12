@@ -1,24 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pipex.c                                            :+:      :+:    :+:   */
+/*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: obouizga <obouizga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/05 13:52:40 by obouizga          #+#    #+#             */
-/*   Updated: 2022/04/12 23:18:03 by obouizga         ###   ########.fr       */
+/*   Created: 2022/04/09 13:28:11 by obouizga          #+#    #+#             */
+/*   Updated: 2022/04/09 13:30:26 by obouizga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
-// ./pipex infile "ls -l" "wc -l" outfile
-//	[0]    [1]      [2]    [3]    [4]
-int	main(int ac, char **av, char **env)
-{
-	char	**paths;
 
-	(void) ac;
-	paths = get_paths(env[6]);
-	check_access_exec(paths, av, env);
-	return (0);
+void	ft_putstr_fd(char *s, int fd)
+{
+	if (s)
+		while (*s)
+			ft_putchar_fd(*(s++), fd);
 }

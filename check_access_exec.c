@@ -1,24 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pipex.c                                            :+:      :+:    :+:   */
+/*   check_access_exec.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: obouizga <obouizga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/05 13:52:40 by obouizga          #+#    #+#             */
-/*   Updated: 2022/04/12 23:18:03 by obouizga         ###   ########.fr       */
+/*   Created: 2022/04/12 22:58:14 by obouizga          #+#    #+#             */
+/*   Updated: 2022/04/12 23:01:27 by obouizga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
-// ./pipex infile "ls -l" "wc -l" outfile
-//	[0]    [1]      [2]    [3]    [4]
-int	main(int ac, char **av, char **env)
-{
-	char	**paths;
 
-	(void) ac;
-	paths = get_paths(env[6]);
-	check_access_exec(paths, av, env);
-	return (0);
+void	check_access_exec(char **paths, char **av, char **env)
+{
+	int		i;
+	char	**args;
+	char	*cmd_p;
+	
+	args = ft_split(av[2], ' ');
+	i = 0;
+	while (i < 6)
+	{
+		cmd_p = ft_strjoin(paths[i++], av[2]);
+		if (!access(cmd_p, X_OK))
+		{
+			execve(cmd_p, args, env);
+			free(cmd_p);
+		}
+		free(cmd_p);
+	}
 }
