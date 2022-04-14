@@ -6,12 +6,11 @@
 /*   By: obouizga <obouizga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/09 16:58:40 by obouizga          #+#    #+#             */
-/*   Updated: 2022/04/09 16:59:04 by obouizga         ###   ########.fr       */
+/*   Updated: 2022/04/12 23:21:40 by obouizga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
-
 
 static size_t	get_words_n(char *s, char c)
 {

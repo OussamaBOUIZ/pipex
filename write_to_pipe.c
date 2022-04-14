@@ -1,33 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_access_exec.c                                :+:      :+:    :+:   */
+/*   write_to_pipe.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: obouizga <obouizga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/12 22:58:14 by obouizga          #+#    #+#             */
-/*   Updated: 2022/04/14 01:16:05 by obouizga         ###   ########.fr       */
+/*   Created: 2022/04/14 00:55:39 by obouizga          #+#    #+#             */
+/*   Updated: 2022/04/14 01:00:57 by obouizga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-void	check_access_exec(char **paths, char **av, char **env)
+void	write_to_pipe(int *fds)
 {
-	int		i;
-	char	**args;
-	char	*cmd_p;
+	dup2(fds[1], STDOUT_FILENO);
 	
-	args = ft_split(av[2], ' ');
-	i = 0;
-	while (i < 6)
-	{
-		cmd_p = ft_strjoin(paths[i++], av[2]);
-		if (!access(cmd_p, X_OK))
-		{
-			execve(cmd_p, args, env);
-			free(cmd_p);
-		}
-		free(cmd_p);
-	}
 }

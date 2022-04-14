@@ -6,12 +6,12 @@
 #    By: obouizga <obouizga@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/26 22:31:58 by obouizga          #+#    #+#              #
-#    Updated: 2022/04/12 23:16:58 by obouizga         ###   ########.fr        #
+#    Updated: 2022/04/12 23:23:10 by obouizga         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 
-NAME = push_swap
+NAME = pipex
 
 CFLAGS = -Wall -Werror -Wextra
 
@@ -29,7 +29,7 @@ OBJECTS = $(MANDATORY_FUNCTIONS:.c=.o)
 all : $(NAME)
 
 $(NAME) :	$(OBJECTS)
-			$(CC) $(CFLAGS) $(OBJECTS)  -o $(NAME) 
+			$(CC) $(CFLAGS) -fsanitize=address $(OBJECTS)  -o $(NAME) 
 			@echo "PIPEX CREATED"
 
 clean :
