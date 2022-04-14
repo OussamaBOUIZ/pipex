@@ -1,35 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_access_exec.c                                :+:      :+:    :+:   */
+/*   write_to_outfile.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: obouizga <obouizga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/12 22:58:14 by obouizga          #+#    #+#             */
-/*   Updated: 2022/04/14 18:02:23 by obouizga         ###   ########.fr       */
+/*   Created: 2022/04/14 17:18:10 by obouizga          #+#    #+#             */
+/*   Updated: 2022/04/14 17:23:41 by obouizga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-void	check_access_exec(char **paths, char *av, char **env)
+void	write_to_outfile(int outfile)
 {
-	int		i;
-	char	**args;
-	char	*cmd_p;
-
-	args = ft_split(av, ' ');
-	i = 0;
-	while (i < 6)
-	{
-		cmd_p = ft_strjoin(paths[i++], av);
-		if (!access(cmd_p, X_OK))
-		{
-			execve(cmd_p, args, env);
-			free(cmd_p);
-		}
-		// else if(i == 6)
-		// 	perror("Command not found :)\n");
-		free(cmd_p);
-	}
+	dup2(outfile, STDOUT_FILENO);
 }

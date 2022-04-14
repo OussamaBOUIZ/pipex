@@ -6,7 +6,7 @@
 /*   By: obouizga <obouizga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/14 00:55:39 by obouizga          #+#    #+#             */
-/*   Updated: 2022/04/14 01:00:57 by obouizga         ###   ########.fr       */
+/*   Updated: 2022/04/14 16:03:07 by obouizga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,5 +15,4 @@
 void	write_to_pipe(int *fds)
 {
 	dup2(fds[1], STDOUT_FILENO);
-	
 }

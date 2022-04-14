@@ -6,7 +6,7 @@
 /*   By: obouizga <obouizga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/05 13:52:40 by obouizga          #+#    #+#             */
-/*   Updated: 2022/04/14 01:20:43 by obouizga         ###   ########.fr       */
+/*   Updated: 2022/04/14 17:44:14 by obouizga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,15 +16,28 @@
 int	main(int ac, char **av, char **env)
 {
 	char	**paths;
-	pid_t	pid;
+	pid_t	pids[2];
 	int		fds[2];
+	int		io_fds[2];
 
 	(void) ac;
+	io_fds[0] = open(av[1], O_RDONLY);
+	io_fds[1] = open(av[4], O_RDWR);
 	pipe(fds);
-	pid = fork();
+	pids[0] = fork();
+	pids[1] = fork();
 	paths = get_paths(env[6]);
-	read_infile(av[1]);
-	if (!pid)
-		check_access_exec(paths, av, env);
+	if (!pids[0])
+	{
+		read_infile(io_fds[0]);
+		write_to_pipe(fds);
+		check_access_exec(paths, av[2], env);
+	}
+	if (!pids[1])
+	{
+		read_from_pipe(fds);
+		write_to_outfile(io_fds[1]);
+		check_access_exec(paths, av[3], env);
+	}
 	return (0);
 }
