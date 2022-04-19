@@ -1,18 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   read_infile.c                                      :+:      :+:    :+:   */
+/*   check_arguments.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: obouizga <obouizga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/14 01:14:35 by obouizga          #+#    #+#             */
-/*   Updated: 2022/04/16 15:42:17 by obouizga         ###   ########.fr       */
+/*   Created: 2022/04/19 11:35:29 by obouizga          #+#    #+#             */
+/*   Updated: 2022/04/19 11:58:29 by obouizga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
+// ./pipex file1 cmd1 cmd2 file2
+// 	[0]     [1]   [2]  [3]  [4]
 
-void	read_infile(int infile)
+int check_arguments(int ac, char **av, char **env)
 {
-	dup2(infile, STDIN_FILENO);
+	check_infile(av);
+	check_commands(ac, av, env);
+	return (0);
 }

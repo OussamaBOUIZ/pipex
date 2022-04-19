@@ -1,18 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   read_infile.c                                      :+:      :+:    :+:   */
+/*   open_files.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: obouizga <obouizga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/14 01:14:35 by obouizga          #+#    #+#             */
-/*   Updated: 2022/04/16 15:42:17 by obouizga         ###   ########.fr       */
+/*   Created: 2022/04/17 14:28:29 by obouizga          #+#    #+#             */
+/*   Updated: 2022/04/17 15:43:56 by obouizga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-void	read_infile(int infile)
+void	open_files(int *io_fds, char *file1, char *file2)
 {
-	dup2(infile, STDIN_FILENO);
+
+
+	io_fds[0] = open(file1, O_RDONLY);
+	io_fds[1] = open(file2, O_RDWR | O_CREAT | O_TRUNC, 0777);
 }

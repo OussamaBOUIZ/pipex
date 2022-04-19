@@ -1,18 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   read_infile.c                                      :+:      :+:    :+:   */
+/*   chekc_commands.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: obouizga <obouizga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/14 01:14:35 by obouizga          #+#    #+#             */
-/*   Updated: 2022/04/16 15:42:17 by obouizga         ###   ########.fr       */
+/*   Created: 2022/04/19 11:58:53 by obouizga          #+#    #+#             */
+/*   Updated: 2022/04/19 12:35:27 by obouizga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-void	read_infile(int infile)
+int	check_commands(int ac, char **av, char **env)
 {
-	dup2(infile, STDIN_FILENO);
+	int		i;
+	int		j;
+
+	i = 1;
+	while (i < ac - 2)
+		check_access(av[i++], env);
+	return (0);
 }
