@@ -6,7 +6,7 @@
 /*   By: obouizga <obouizga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/08 17:48:30 by obouizga          #+#    #+#             */
-/*   Updated: 2022/04/17 17:11:54 by obouizga         ###   ########.fr       */
+/*   Updated: 2022/04/19 22:32:23 by obouizga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ void	write_to_pipe(int *fds);
 void	open_files(int *io_fds, char *file1, char *file2);
 void	run_first_cmd(int *fds, int io_fds, char *cmd, char **env);
 void	run_second_cmd(int *fds, int io_fds, char *cmd, char **env);
+int		**create_fds_table(int pipes_n);
 char	*ft_strdup(const char *s1);
 
 #endif

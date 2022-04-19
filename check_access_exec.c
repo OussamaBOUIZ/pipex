@@ -6,7 +6,7 @@
 /*   By: obouizga <obouizga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/12 22:58:14 by obouizga          #+#    #+#             */
-/*   Updated: 2022/04/19 12:35:34 by obouizga         ###   ########.fr       */
+/*   Updated: 2022/04/19 13:17:42 by obouizga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ int	check_access(char *s, char **env)
 	{
 		cmd_p = ft_strjoin(paths[i++], s);
 		if (!access(cmd_p, X_OK))
-			return (0);
+			return (1);
 	}
-	return (1);
+	return (0);
 }

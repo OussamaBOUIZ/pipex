@@ -1,13 +1,13 @@
-#include <stdio.h>
-#include <unistd.h>
-#include <sys/wait.h>
+#include "pipex.h"
 
+int main(void)
 
-int main(int ac, char **av, char **env)
 {
-	(void)ac;
-	(void)av;
-	execve("/bin/ls", NULL, env);
-	printf("Hello world\n");
+	int pid = fork();
+	int status;
+
+	if (!pid)
+		execve("list.sh", NULL, NULL);
+	waitpid(pid, &status, 0);
 	return (0);
 }

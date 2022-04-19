@@ -6,7 +6,7 @@
 /*   By: obouizga <obouizga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/18 15:06:23 by obouizga          #+#    #+#             */
-/*   Updated: 2022/04/19 12:36:16 by obouizga         ###   ########.fr       */
+/*   Updated: 2022/04/19 22:44:15 by obouizga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,3 +33,16 @@
 	besides the in-between commands will read from a pipe and write to a pipe
 */
 
+int main(int ac, char **av, char **env)
+{
+	int	pipes_n;
+	int	cmds_n;
+	int	**fds_table;
+	int	*pids_arr;
+	
+	//check_arguments(ac, av, env);
+	cmds_n = ac - 3;
+	pipes_n = cmds_n - 1;
+	fds_table = create_fds_table(pipes_n);
+	pids_arr = malloc(sizeof(int) * cmds_n);
+}
