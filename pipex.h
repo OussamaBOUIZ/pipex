@@ -6,7 +6,7 @@
 /*   By: obouizga <obouizga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/08 17:48:30 by obouizga          #+#    #+#             */
-/*   Updated: 2022/04/19 22:32:23 by obouizga         ###   ########.fr       */
+/*   Updated: 2022/04/20 10:49:11 by obouizga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ char	*ft_strjoin(char *s1, char *s2);
 size_t	ft_strlen(char *s);
 char	**get_paths(char *path_line);
 void	check_access_exec(char *av, char **env);
-void	read_infile(int infile);
+void	read_from_infile(int infile);
 void	read_from_pipe(int *fds);
 void	write_to_outfile(int outfile);
 void	write_to_pipe(int *fds);
@@ -37,5 +37,6 @@ void	run_first_cmd(int *fds, int io_fds, char *cmd, char **env);
 void	run_second_cmd(int *fds, int io_fds, char *cmd, char **env);
 int		**create_fds_table(int pipes_n);
 char	*ft_strdup(const char *s1);
+int		check_main_process(int *pids_arr, int n);
 
 #endif

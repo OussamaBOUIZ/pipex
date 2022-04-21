@@ -6,12 +6,11 @@
 /*   By: obouizga <obouizga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/18 15:06:23 by obouizga          #+#    #+#             */
-/*   Updated: 2022/04/19 22:44:15 by obouizga         ###   ########.fr       */
+/*   Updated: 2022/04/21 09:51:59 by obouizga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
-
 /*
 	./pipex file1 cmd1 cmd2 cmd3 ... cmdn file2
 	[0]     [1]   [2]  [3]  [4] ... [n] [n + 1]
@@ -31,6 +30,28 @@
 	pipes(fds)
 	The first command reads from infile and the last command writes to outfile
 	besides the in-between commands will read from a pipe and write to a pipe
+
+	To allow those processes to communicate between each other will use
+	the created pipes:
+		READ_FROM_PIPE then WRITE_TO_PIPE
+	For the case of the first command it'll go like this:
+	 COMMAND 1: should read from the infile and write to the first pipe (write_to_pipe(fds_table[0]))
+	 meanwhile COMMAND 2 would also read from the first pipe (read_from_pipe(fds_table[0])) but otherwise
+	 write to the second pipe (write_to_pipe(fds_table[1])) and so on ... at the same time the last command 
+	 will read from the last pipe (read_from_pipe(fds_table[pipes_n - 1])) and then write to the outfile
+	 	// So we conclude that if the command isn't the first cmd nor the last, it should do this:
+		 -> read from the prev pipe : read_from_pipe(fds_table[id - 1])
+		 -> write to the next pipe : write_to_pipe(fds_table[id])
+		 PS: id indicates the positioin of the command.
+	How will we find out in which process we are ??
+	i = 0 1st child process : pid_table[0] == 0
+	i = 1 2nd child process : pid_table[1] == 0
+	i = 2 3rd child process : pid_table[2] == 0
+	.   .  .    .     .     : .   . .
+	.   .  .    .     .     : .   . .
+	.   .  .    .     .     : .   . .
+	i = n nth child process : pid_table[n] == 0
+		
 */
 
 int main(int ac, char **av, char **env)
@@ -39,10 +60,30 @@ int main(int ac, char **av, char **env)
 	int	cmds_n;
 	int	**fds_table;
 	int	*pids_arr;
+	int i;
 	
 	//check_arguments(ac, av, env);
+	i = 0;
 	cmds_n = ac - 3;
 	pipes_n = cmds_n - 1;
 	fds_table = create_fds_table(pipes_n);
 	pids_arr = malloc(sizeof(int) * cmds_n);
+	while (i < cmds_n && check_main_process(pids_arr, i))
+	{
+		pipe(fds_table[i]);
+		pids_arr[i] = fork();
+		i++;
+	}
+	i = 1;
+	while (i < pipes_n && !pids_arr[i])
+	{
+		read_from_pipe(fds_table[i - 1]);
+		write_to_pipe(fds_table[i]);
+		i++;
+	}
 }
+
+
+/*
+	write_to_pipe
+*/

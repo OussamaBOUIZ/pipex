@@ -1,21 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   run_first_cmd.c                                    :+:      :+:    :+:   */
+/*   read_from_infile.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: obouizga <obouizga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/17 14:12:02 by obouizga          #+#    #+#             */
-/*   Updated: 2022/04/20 10:49:11 by obouizga         ###   ########.fr       */
+/*   Created: 2022/04/14 01:14:35 by obouizga          #+#    #+#             */
+/*   Updated: 2022/04/16 15:42:17 by obouizga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-void	run_first_cmd(int *fds, int io_fds, char *cmd, char **env)
+void	read_from_infile(int infile)
 {
-	(void)fds;
-	read_from_infile(io_fds);
-	// write_to_pipe(fds);
-	check_access_exec(cmd, env);
+	dup2(infile, STDIN_FILENO);
 }

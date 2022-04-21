@@ -1,18 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   read_infile.c                                      :+:      :+:    :+:   */
+/*   check_main_process.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: obouizga <obouizga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/14 01:14:35 by obouizga          #+#    #+#             */
-/*   Updated: 2022/04/16 15:42:17 by obouizga         ###   ########.fr       */
+/*   Created: 2022/04/20 09:50:17 by obouizga          #+#    #+#             */
+/*   Updated: 2022/04/20 10:05:58 by obouizga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-void	read_infile(int infile)
+int	check_main_process(int *pids_arr, int n)
 {
-	dup2(infile, STDIN_FILENO);
+	int	i;
+
+	i = 0;
+	while (i < n)
+		if (pids_arr[i++])
+			return (1);
+	return (0);
 }

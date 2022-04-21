@@ -6,7 +6,7 @@
 /*   By: obouizga <obouizga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/05 13:52:40 by obouizga          #+#    #+#             */
-/*   Updated: 2022/04/18 15:44:09 by obouizga         ###   ########.fr       */
+/*   Updated: 2022/04/20 10:49:11 by obouizga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int	main(int ac, char **av, char **env)
 	
 	if (!pids[0])
 	{
-		read_infile(io_fds[0]);
+		read_from_infile(io_fds[0]);
 		write_to_pipe(fds);
 		check_access_exec(av[2], env);
 	}
