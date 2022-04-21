@@ -6,7 +6,7 @@
 /*   By: obouizga <obouizga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/18 15:06:23 by obouizga          #+#    #+#             */
-/*   Updated: 2022/04/21 09:51:59 by obouizga         ###   ########.fr       */
+/*   Updated: 2022/04/21 18:05:30 by obouizga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,27 +60,16 @@ int main(int ac, char **av, char **env)
 	int	cmds_n;
 	int	**fds_table;
 	int	*pids_arr;
-	int i;
+	int *in_out_f;
 	
 	//check_arguments(ac, av, env);
-	i = 0;
+
 	cmds_n = ac - 3;
 	pipes_n = cmds_n - 1;
 	fds_table = create_fds_table(pipes_n);
 	pids_arr = malloc(sizeof(int) * cmds_n);
-	while (i < cmds_n && check_main_process(pids_arr, i))
-	{
-		pipe(fds_table[i]);
-		pids_arr[i] = fork();
-		i++;
-	}
-	i = 1;
-	while (i < pipes_n && !pids_arr[i])
-	{
-		read_from_pipe(fds_table[i - 1]);
-		write_to_pipe(fds_table[i]);
-		i++;
-	}
+	creat_procs(cmds_n, pids_arr, fds_table);
+	setup_pipes(pipes_n, fds_table, pids_arr, in_out_f);
 }
 
 

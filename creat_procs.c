@@ -1,33 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strdup.c                                        :+:      :+:    :+:   */
+/*   creat_procs.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: obouizga <obouizga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/17 17:10:55 by obouizga          #+#    #+#             */
-/*   Updated: 2022/04/21 17:44:20 by obouizga         ###   ########.fr       */
+/*   Created: 2022/04/21 18:02:45 by obouizga          #+#    #+#             */
+/*   Updated: 2022/04/21 18:04:21 by obouizga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-char	*ft_strdup(const char *s1)
+void	creat_procs(int n, int *pids_arr, int **fds_table)
 {
-	int		a;
-	char	*copy;
-	char	*s;
+	int	i;
 
-	a = 0;
-	s = (char *)s1;
-	copy = malloc(sizeof(char) * (ft_strlen(s) + 1));
-	if (!copy)
-		return (0);
-	while (s[a])
+	i = 0;
+	while (i < n && check_main_process(pids_arr, i))
 	{
-		copy[a] = s[a];
-		a++;
+		pipe(fds_table[i]);
+		pids_arr[i] = fork();
+		i++;
 	}
-	copy[a] = '\0';
-	return (copy);
 }
