@@ -6,17 +6,24 @@
 /*   By: obouizga <obouizga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/19 11:35:29 by obouizga          #+#    #+#             */
-/*   Updated: 2022/04/19 11:58:29 by obouizga         ###   ########.fr       */
+/*   Updated: 2022/04/24 17:25:56 by obouizga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
-// ./pipex file1 cmd1 cmd2 file2
-// 	[0]     [1]   [2]  [3]  [4]
 
-int check_arguments(int ac, char **av, char **env)
+void	check_arguments(t_arg args)
 {
-	check_infile(av);
-	check_commands(ac, av, env);
-	return (0);
+	if (args.in_f == -1)
+	{
+		perror(0);
+		exit(EXIT_FAILURE);
+	}
+	else if (!args.cmd_1 || !args.cmd_2)
+	{
+		ft_putstr_fd("COMMAND NOT FOUND\n", 2);
+		exit(EXIT_FAILURE);
+	}
+	exit(EXIT_SUCCESS);
 }
+

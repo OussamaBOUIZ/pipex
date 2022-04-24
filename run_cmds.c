@@ -1,27 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   creat_procs.c                                      :+:      :+:    :+:   */
+/*   run_cmds.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: obouizga <obouizga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/21 18:02:45 by obouizga          #+#    #+#             */
-/*   Updated: 2022/04/22 14:24:23 by obouizga         ###   ########.fr       */
+/*   Created: 2022/04/23 07:11:55 by obouizga          #+#    #+#             */
+/*   Updated: 2022/04/23 08:42:28 by obouizga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-void	creat_procs(int n, int *pids_arr, int **fds_table)
+void	run_cmds(int n, int *pids_arr, char **av, char **env)
 {
-	int	i;
-
-	i = 1;
-	pids_arr[0] = fork();
-	while (i < n && check_main_process(pids_arr, i))
+	int 	i;
+	char	*cmd;
+	
+	i = 0;
+	while (i < n)
 	{
-		pipe(fds_table[i - 1]);
-		pids_arr[i] = fork();
+		cmd = 
+		if (!pids_arr[i])
+		{
+			execute_cmd(av[i + 3], env);
+		}
 		i++;
 	}
 }

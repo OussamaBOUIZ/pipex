@@ -1,27 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   creat_procs.c                                      :+:      :+:    :+:   */
+/*   check_slash.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: obouizga <obouizga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/21 18:02:45 by obouizga          #+#    #+#             */
-/*   Updated: 2022/04/22 14:24:23 by obouizga         ###   ########.fr       */
+/*   Created: 2022/04/24 14:44:41 by obouizga          #+#    #+#             */
+/*   Updated: 2022/04/24 14:50:08 by obouizga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-void	creat_procs(int n, int *pids_arr, int **fds_table)
+int	check_slash(char *s)
 {
-	int	i;
-
-	i = 1;
-	pids_arr[0] = fork();
-	while (i < n && check_main_process(pids_arr, i))
-	{
-		pipe(fds_table[i - 1]);
-		pids_arr[i] = fork();
-		i++;
-	}
+	while (*s)
+		if (*(s++) == '/')
+			return (1);
+	return (0);
 }

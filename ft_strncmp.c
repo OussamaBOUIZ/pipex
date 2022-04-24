@@ -1,27 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   creat_procs.c                                      :+:      :+:    :+:   */
+/*   ft_strncmp.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: obouizga <obouizga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/21 18:02:45 by obouizga          #+#    #+#             */
-/*   Updated: 2022/04/22 14:24:23 by obouizga         ###   ########.fr       */
+/*   Created: 2022/04/23 15:07:08 by obouizga          #+#    #+#             */
+/*   Updated: 2022/04/23 15:07:22 by obouizga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-void	creat_procs(int n, int *pids_arr, int **fds_table)
-{
-	int	i;
 
-	i = 1;
-	pids_arr[0] = fork();
-	while (i < n && check_main_process(pids_arr, i))
-	{
-		pipe(fds_table[i - 1]);
-		pids_arr[i] = fork();
+int	ft_strncmp(const char *s1, const char *s2, size_t n)
+{
+	size_t			i;
+	unsigned char	*s;
+	unsigned char	*ss;
+
+	s = (unsigned char *)s1;
+	ss = (unsigned char *)s2;
+	i = 0;
+	if (n == 0)
+		return (0);
+	while (s[i] && (s[i] == ss[i]) && i < n - 1)
 		i++;
-	}
+	return (s[i] - ss[i]);
 }

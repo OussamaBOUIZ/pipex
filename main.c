@@ -3,11 +3,8 @@
 int main(void)
 
 {
-	int pid = fork();
-	int status;
-
-	if (!pid)
-		execve("list.sh", NULL, NULL);
-	waitpid(pid, &status, 0);
+	printf("Hello  world\n");
+	fork();
+	printf("hello world\n");
 	return (0);
 }

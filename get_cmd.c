@@ -1,38 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strjoin_s.c                                       :+:      :+:    :+:   */
+/*   get_cmd.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: obouizga <obouizga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/12 13:54:30 by obouizga          #+#    #+#             */
-/*   Updated: 2022/04/12 14:08:04 by obouizga         ###   ########.fr       */
+/*   Created: 2022/04/23 14:52:15 by obouizga          #+#    #+#             */
+/*   Updated: 2022/04/24 17:28:43 by obouizga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-char	*ft_strjoin_s(char *s1, char *s2)
+t_cmd	*get_cmd(char *s, char **env)
 {
-	char	*nw_str;
-	size_t	total_l;
+	t_cmd	*cmd;
+	char	**paths;
 	int		i;
-	int		j;
 
-	total_l = ft_strlen(s1) + ft_strlen(s2) + 1;
-	nw_str = malloc(sizeof(char) * (total_l + 1));
-	if (!nw_str)
+	cmd = malloc(sizeof(t_cmd *));
+	if (!cmd)
 		return (NULL);
+	if (set_script(s, cmd))
+		return (cmd);
 	i = -1;
-	if (s1)
-		while (s1[++i])
-			nw_str[i] = s1[i];
-	nw_str[i] = '/';
-	j = ft_strlen(s1) + 1;
-	i = 0;
-	if (s2)
-		while (s2[i])
-			nw_str[j++] = s2[i++];
-	nw_str[j] = 0;
-	return (nw_str);
+	cmd->cmd_op = ft_split(s, ' ');
+	paths = get_paths(env);
+	while (++i < 6)
+	{
+		if (s[0] == '/')
+			cmd->cmd_path = ft_strdup(s);
+		else
+			cmd->cmd_path = ft_strjoin_s(paths[i], cmd->cmd_op[0]);
+		if (!access(cmd->cmd_path, X_OK))
+			return (cmd);
+		free(cmd->cmd_path);
+	}
+	free(cmd->cmd_op);
+	return (NULL);
 }

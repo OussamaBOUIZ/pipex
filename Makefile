@@ -6,7 +6,7 @@
 #    By: obouizga <obouizga@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/26 22:31:58 by obouizga          #+#    #+#              #
-#    Updated: 2022/04/20 10:49:11 by obouizga         ###   ########.fr        #
+#    Updated: 2022/04/24 15:10:56 by obouizga         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,9 +19,9 @@ RM = rm -rf
 
 CC = cc
 
-FUNCTIONS = check_access_exec.c ft_putchar_fd.c ft_putstr_fd.c ft_split.c ft_strjoin.c ft_strlen.c get_paths.c \
+FUNCTIONS = check_access_exec.c ft_putchar_fd.c ft_putstr_fd.c ft_split.c ft_strjoin_s.c ft_strlen.c get_paths.c \
 			read_from_pipe.c read_from_infile.c write_to_outfile.c write_to_pipe.c open_files.c run_first_cmd.c \
-			run_second_cmd.c ft_strdup.c\
+			run_second_cmd.c ft_strdup.c set_script.c get_cmd.c get_args.c ft_strncmp.c\
 			
 MANDATORY_FUNCTIONS = ${FUNCTIONS} pipex.c
 
