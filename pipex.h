@@ -6,7 +6,7 @@
 /*   By: obouizga <obouizga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/08 17:48:30 by obouizga          #+#    #+#             */
-/*   Updated: 2022/04/24 17:21:14 by obouizga         ###   ########.fr       */
+/*   Updated: 2022/04/25 13:49:46 by obouizga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ char	**ft_split(char const *s, char c);
 char	*ft_strjoin_s(char *s1, char *s2);
 size_t	ft_strlen(char *s);
 char	**get_paths(char **env);
+t_arg	get_args(int ac, char **av, char **env);
 void	check_access_exec(char *av, char **env);
 void	read_from_infile(int infile);
 void	read_from_pipe(int *fds);

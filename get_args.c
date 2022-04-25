@@ -6,7 +6,7 @@
 /*   By: obouizga <obouizga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/23 14:32:45 by obouizga          #+#    #+#             */
-/*   Updated: 2022/04/24 17:20:59 by obouizga         ###   ########.fr       */
+/*   Updated: 2022/04/25 13:21:58 by obouizga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,16 @@ t_arg	get_args(int ac, char **av, char **env)
 int main(int ac, char **av, char **env)
 {
 	t_arg  args = get_args(ac, av, env);
+	// printf("%d\n", args.in_f);
+	// printf("%d\n", args.out_f);
+	// printf("%s\n", args.cmd_1->cmd_path);
 	// printf("%s\n", args.cmd_2->cmd_path);
-	 check_arguments(args);
+	// printf("%s\n", args.cmd_2->cmd_path);
+	check_arguments(args);
+	// (void)ac;
+	// if (access(av[1], X_OK))
+	// 	printf("non valid path\n");
+	// else
+	// 	printf("valid path\n");
 	return (0);
 }
