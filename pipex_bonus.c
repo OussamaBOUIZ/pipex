@@ -6,7 +6,7 @@
 /*   By: obouizga <obouizga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/18 15:06:23 by obouizga          #+#    #+#             */
-/*   Updated: 2022/04/23 07:11:47 by obouizga         ###   ########.fr       */
+/*   Updated: 2022/04/26 08:54:41 by obouizga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,8 +51,6 @@
 	.   .  .    .     .     : .   . .
 	.   .  .    .     .     : .   . .
 	i = n nth child process : pid_table[n] == 0
-		
-*/
 
 int main(int ac, char **av, char **env)
 {
@@ -70,4 +68,21 @@ int main(int ac, char **av, char **env)
 	setup_pipes(pipes_n, fds_table, pids_arr, in_out_f);
 	run_cmds(cmds_n, av, env);
 	return (0);
+}
+		
+*/
+
+int	main(int ac, char **av, char **env)
+{
+	int		**fds_table;
+	t_b_arg	args;
+	int		pipes_n;
+	int		cmds_n;
+	
+	cmds_n = ac - 3;
+	pipes_n = cmds_n - 1;
+	args = get_args_bonus(ac, av, env);
+	check_arguments_bonus(args);
+	fds_table = create_fds_table(pipes_n);
+	creat_link_procs();
 }

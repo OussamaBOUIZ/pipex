@@ -6,7 +6,7 @@
 /*   By: obouizga <obouizga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/17 14:12:02 by obouizga          #+#    #+#             */
-/*   Updated: 2022/04/20 10:49:11 by obouizga         ###   ########.fr       */
+/*   Updated: 2022/04/26 09:51:08 by obouizga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,7 @@
 
 void	run_first_cmd(int *fds, int io_fds, char *cmd, char **env)
 {
-	(void)fds;
 	read_from_infile(io_fds);
-	// write_to_pipe(fds);
+	write_to_pipe(fds);
 	check_access_exec(cmd, env);
 }

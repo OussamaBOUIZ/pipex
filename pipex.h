@@ -6,7 +6,7 @@
 /*   By: obouizga <obouizga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/08 17:48:30 by obouizga          #+#    #+#             */
-/*   Updated: 2022/04/25 13:49:46 by obouizga         ###   ########.fr       */
+/*   Updated: 2022/04/26 08:46:34 by obouizga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,13 @@ typedef struct arg
 	t_cmd	*cmd_1;
 	t_cmd	*cmd_2;
 }			t_arg;
+
+typedef struct arg_bonus
+{
+	int		in_f;
+	int		out_f;
+	t_cmd	**cmd_1;
+}			t_b_arg;
 
 void	ft_putstr_fd(char *s, int fd);
 void	ft_putchar_fd(char c, int fd);

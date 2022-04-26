@@ -6,7 +6,7 @@
 /*   By: obouizga <obouizga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/23 14:52:15 by obouizga          #+#    #+#             */
-/*   Updated: 2022/04/25 13:23:13 by obouizga         ###   ########.fr       */
+/*   Updated: 2022/04/26 08:35:25 by obouizga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,21 +16,26 @@ t_cmd	*get_cmd(char *s, char **env)
 {
 	t_cmd	*cmd;
 	char	**paths;
-	int		i;
 
 	cmd = malloc(sizeof(t_cmd));
 	if (!cmd)
 		return (NULL);
-	i = -1;
 	cmd->cmd_op = ft_split(s, ' ');
 	paths = get_paths(env);
-	while (paths[i])
+	while (*paths)
 	{
-		cmd->cmd_path = ft_strjoin_s(paths[i], cmd->cmd_op[0]);
-		if (!access(cmd->cmd_path, X_OK))
+		if (check_slash(s))
+			cmd->cmd_path = ft_strdup(cmd->cmd_op[0]);
+		else
+			cmd->cmd_path = ft_strjoin_s(*(paths++), cmd->cmd_op[0]);
+		if (!access(cmd->cmd_path, X_OK | F_OK))
 			return (cmd);
+		else if (check_slash(s))
+		{
+			free(cmd->cmd_path);
+			return (0);
+		}
 		free(cmd->cmd_path);
-		i++;
 	}
 	free(cmd->cmd_op);
 	return (NULL);

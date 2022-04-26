@@ -6,7 +6,7 @@
 /*   By: obouizga <obouizga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/19 11:35:29 by obouizga          #+#    #+#             */
-/*   Updated: 2022/04/25 09:04:56 by obouizga         ###   ########.fr       */
+/*   Updated: 2022/04/26 05:59:46 by obouizga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,5 +25,4 @@ void	check_arguments(t_arg args)
 		exit(EXIT_FAILURE);
 	}
 	printf("VALID ARGUMENTS\n");
-	exit(EXIT_SUCCESS);
 }
