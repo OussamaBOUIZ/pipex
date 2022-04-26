@@ -6,7 +6,7 @@
 /*   By: obouizga <obouizga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/18 15:06:23 by obouizga          #+#    #+#             */
-/*   Updated: 2022/04/26 08:54:41 by obouizga         ###   ########.fr       */
+/*   Updated: 2022/04/26 12:13:30 by obouizga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,18 +71,18 @@ int main(int ac, char **av, char **env)
 }
 		
 */
-
 int	main(int ac, char **av, char **env)
 {
-	int		**fds_table;
-	t_b_arg	args;
+	int		**fds_tbl;
+	t_b_arg	args_b;
 	int		pipes_n;
-	int		cmds_n;
-	
-	cmds_n = ac - 3;
-	pipes_n = cmds_n - 1;
-	args = get_args_bonus(ac, av, env);
-	check_arguments_bonus(args);
-	fds_table = create_fds_table(pipes_n);
-	creat_link_procs();
+
+	args_b.n = ac - 3;
+	pipes_n = args_b.n - 1;
+	args_b = get_args_bonus(ac, av, env);
+	check_args_bonus(args_b);
+	fds_tbl = create_fds_table(pipes_n);
+	creat_link_exec(fds_tbl, args_b, env);
+	wait_all();
+	return (0);
 }

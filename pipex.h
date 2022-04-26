@@ -6,7 +6,7 @@
 /*   By: obouizga <obouizga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/08 17:48:30 by obouizga          #+#    #+#             */
-/*   Updated: 2022/04/26 08:46:34 by obouizga         ###   ########.fr       */
+/*   Updated: 2022/04/26 12:25:04 by obouizga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,11 +34,12 @@ typedef struct arg
 	t_cmd	*cmd_2;
 }			t_arg;
 
-typedef struct arg_bonus
+typedef struct arg_b
 {
+	int		n;
 	int		in_f;
 	int		out_f;
-	t_cmd	**cmd_1;
+	t_cmd	**cmds;
 }			t_b_arg;
 
 void	ft_putstr_fd(char *s, int fd);
@@ -54,8 +55,6 @@ void	read_from_pipe(int *fds);
 void	write_to_outfile(int outfile);
 void	write_to_pipe(int *fds);
 void	open_files(int *io_fds, char *file1, char *file2);
-void	run_first_cmd(int *fds, int io_fds, char *cmd, char **env);
-void	run_second_cmd(int *fds, int io_fds, char *cmd, char **env);
 int		**create_fds_table(int pipes_n);
 char	*ft_strdup(const char *s1);
 int		check_main_process(int *pids_arr, int n);
@@ -65,7 +64,14 @@ int		ft_strncmp(const char *s1, const char *s2, size_t n);
 int		get_arr_len(char **arr);
 int		check_slash(char *s);
 int		set_script(char *s, t_cmd *cmd);
-void	check_arguments(t_arg args);
+void	check_args(t_arg args);
 t_cmd	*get_cmd(char *s, char **env);
+void	run_first_cmd(int infile, int *fds, t_b_arg args_b, char **env);
+void	run_last_cmd(int outfile, int *fds, t_b_arg args_b, char **env);
+void	run_mid_cmd(int **fds, int i, t_b_arg args_b, char **env);
+void	creat_link_exec(int **fds_tbl, t_b_arg args_b, char **env);
+t_b_arg	get_args_bonus(int ac, char **av, char **env);
+t_cmd	**get_commands(int ac, char **av, char **env);
+void	wait_all(void);
 
 #endif

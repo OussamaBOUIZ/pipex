@@ -6,18 +6,13 @@
 /*   By: obouizga <obouizga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/05 13:52:40 by obouizga          #+#    #+#             */
-/*   Updated: 2022/04/26 08:34:29 by obouizga         ###   ########.fr       */
+/*   Updated: 2022/04/26 12:24:55 by obouizga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 // ./pipex infile "ls -l" "wc -l" outfile
 //	[0]    [1]      [2]    [3]    [4]
-void	wait_all(void)
-{
-	while (wait(NULL) != -1)
-		continue ;
-}
 
 int	main(int ac, char **av, char **env)
 {
@@ -26,7 +21,7 @@ int	main(int ac, char **av, char **env)
 	int		pids[2];
 
 	args = get_args(ac, av, env);
-	check_arguments(args);
+	check_args(args);
 	pipe(fds);
 	pids[0] = fork();
 	pids[1] = fork();

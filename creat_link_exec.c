@@ -1,42 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   creat_procs.c                                      :+:      :+:    :+:   */
+/*   creat_link_exec.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: obouizga <obouizga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/21 18:02:45 by obouizga          #+#    #+#             */
-/*   Updated: 2022/04/26 08:54:14 by obouizga         ###   ########.fr       */
+/*   Created: 2022/04/26 10:50:57 by obouizga          #+#    #+#             */
+/*   Updated: 2022/04/26 12:08:31 by obouizga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-// void	creat_procs(int n, int *pids_arr, int **fds_table)
-// {
-// 	int	i;
-
-// 	i = 1;
-// 	pids_arr[0] = fork();
-// 	while (i < n && check_main_process(pids_arr, i))
-// 	{
-// 		pipe(fds_table[i - 1]);
-// 		pids_arr[i] = fork();
-// 		i++;
-// 	}
-// }
-
-void	creat_link_procs(int n, int **fds_table, int *io_fds);
+void	creat_link_exec(int **fds_tbl, t_b_arg args_b, char **env)
 {
 	int	i;
 
 	i = 0;
-	while (i < n)
+	while (i < args_b.n)
 	{
 		if (!fork())
 		{
 			if (!i)
-				run_first_cmd(fds_table[i], io_fds, )
+				run_first_cmd(args_b.in_f, fds_tbl[i], args_b, env);
+			else if (i == args_b.n - 1)
+				run_last_cmd(args_b.out_f, fds_tbl[i], args_b, env);
+			else
+				run_mid_cmd(fds_tbl, i, args_b, env);
 		}
 		i++;
 	}

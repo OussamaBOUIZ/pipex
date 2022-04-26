@@ -1,46 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_access_exec.c                                :+:      :+:    :+:   */
+/*   get_commands.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: obouizga <obouizga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/12 22:58:14 by obouizga          #+#    #+#             */
-/*   Updated: 2022/04/26 05:55:20 by obouizga         ###   ########.fr       */
+/*   Created: 2022/04/26 11:58:04 by obouizga          #+#    #+#             */
+/*   Updated: 2022/04/26 12:16:51 by obouizga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-char	*get_command(char *av, char *path)
-{
-	char	*cmd;
-
-	if (av[0] == '/')
-		cmd = ft_strdup(av);
-	else
-		cmd = ft_strjoin_s(path, av);
-	return (cmd);
-}
-
-void	check_access_exec(char *av, char **env)
+t_cmd	**get_commands(int ac, char **av, char **env)
 {
 	int		i;
-	char	**args;
-	char	*cmd_p;
-	char	**paths;
+	t_cmd	**commands;
 
-	args = ft_split(av, ' ');
-	paths = get_paths(env[6]);
-	i = 0;
-	while (paths[i])
+	commands = malloc(sizeof(t_cmd *) * (ac - 3));
+	i = 2;
+	while (i < ac - 1)
 	{
-		cmd_p = get_command(av, paths[i++]);
-		if (!access(cmd_p, X_OK))
+		commands[i] = get_cmd(av[i], env);
+		if (!commands[i])
 		{
-			execve(cmd_p, args, env);
-			free(cmd_p);
+			free(commands);
+			retunr (NULL);
 		}
-		free(cmd_p);
+		i++;
 	}
+
+	return (commands);
 }
