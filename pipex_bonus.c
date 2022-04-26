@@ -6,7 +6,7 @@
 /*   By: obouizga <obouizga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/18 15:06:23 by obouizga          #+#    #+#             */
-/*   Updated: 2022/04/26 12:13:30 by obouizga         ###   ########.fr       */
+/*   Updated: 2022/04/26 18:01:38 by obouizga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,16 +70,26 @@ int main(int ac, char **av, char **env)
 	return (0);
 }
 		
-*/
+ */
+void	print_commands(t_b_arg args_b, int ac)
+{
+	int	i;
+
+	i = 0;
+	while (i < ac - 3)
+		printf("args_b.cmds  %s \n", args_b.cmds[i++]->cmd_path);
+}
+
 int	main(int ac, char **av, char **env)
 {
 	int		**fds_tbl;
 	t_b_arg	args_b;
 	int		pipes_n;
 
-	args_b.n = ac - 3;
-	pipes_n = args_b.n - 1;
+	// args_b.n = ac - 3;
+	pipes_n = ac - 1;
 	args_b = get_args_bonus(ac, av, env);
+	print_commands(args_b, ac);
 	check_args_bonus(args_b);
 	fds_tbl = create_fds_table(pipes_n);
 	creat_link_exec(fds_tbl, args_b, env);

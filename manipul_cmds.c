@@ -6,7 +6,7 @@
 /*   By: obouizga <obouizga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/26 10:37:41 by obouizga          #+#    #+#             */
-/*   Updated: 2022/04/26 10:45:22 by obouizga         ###   ########.fr       */
+/*   Updated: 2022/04/26 17:57:39 by obouizga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,16 +19,16 @@ void	run_first_cmd(int infile, int *fds, t_b_arg args_b, char **env)
 	execve(args_b.cmds[0]->cmd_path, args_b.cmds[0]->cmd_op, env);
 }
 
+void	run_mid_cmd(int **fds_tbl, int i, t_b_arg args_b, char **env)
+{
+	read_from_pipe(fds_tbl[i - 1]);
+	write_to_pipe(fds_tbl[i]);
+	execve(args_b.cmds[i]->cmd_path, args_b.cmds[i]->cmd_op, env);
+}
+
 void	run_last_cmd(int outfile, int *fds, t_b_arg args_b, char **env)
 {
 	read_from_pipe(fds);
 	write_to_outfile(outfile);
 	execve(args_b.cmds[args_b.n]->cmd_path, args_b.cmds[args_b.n]->cmd_op, env);
-}
-
-void	run_mid_cmd(int **fds, int i, t_b_arg args_b, char **env)
-{
-	read_from_pipe(fds[i - 1]);
-	write_to_pipe(fds[i]);
-	execve(args_b.cmds[i]->cmd_path, args_b.cmds[i]->cmd_op, env);
 }

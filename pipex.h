@@ -6,7 +6,7 @@
 /*   By: obouizga <obouizga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/08 17:48:30 by obouizga          #+#    #+#             */
-/*   Updated: 2022/04/26 12:25:04 by obouizga         ###   ########.fr       */
+/*   Updated: 2022/04/26 17:22:45 by obouizga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,10 +65,11 @@ int		get_arr_len(char **arr);
 int		check_slash(char *s);
 int		set_script(char *s, t_cmd *cmd);
 void	check_args(t_arg args);
+void	check_args_bonus(t_b_arg args_b);
 t_cmd	*get_cmd(char *s, char **env);
 void	run_first_cmd(int infile, int *fds, t_b_arg args_b, char **env);
 void	run_last_cmd(int outfile, int *fds, t_b_arg args_b, char **env);
-void	run_mid_cmd(int **fds, int i, t_b_arg args_b, char **env);
+void	run_mid_cmd(int **fds_tbl, int i, t_b_arg args_b, char **env);
 void	creat_link_exec(int **fds_tbl, t_b_arg args_b, char **env);
 t_b_arg	get_args_bonus(int ac, char **av, char **env);
 t_cmd	**get_commands(int ac, char **av, char **env);
