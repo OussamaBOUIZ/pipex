@@ -5,7 +5,7 @@ debug
 console
 terminal
 pipex
-anana
+ananas
 sumo
 salmon
 turkey
