@@ -1,0 +1,1 @@
+./ppx inf sort "uniq -c" "grep 2" wc "awk '{print $1 $2 $3}'" wc outf
