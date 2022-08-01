@@ -6,7 +6,7 @@
 /*   By: obouizga <obouizga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/08 17:48:30 by obouizga          #+#    #+#             */
-/*   Updated: 2022/07/30 06:41:16 by obouizga         ###   ########.fr       */
+/*   Updated: 2022/08/01 17:12:17 by obouizga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ typedef struct arg_b
 }			t_b_arg;
 
 void	close_fail(void);
-void	dup2_fail(void);
+void	dup2_fail(int fd);
 void	execve_fail(void);
 void	fork_fail(void);
 void	malloc_fail(void);
@@ -78,6 +78,6 @@ t_b_arg	get_args_bonus(int ac, char **av, char **env);
 t_cmd	**get_commands(int ac, char **av, char **env);
 void	malloc_fail(void);
 void	wait_all(void);
-void	close_fds(int *fds);
+void	close_fds(int **fds_table, int pipes_n, int i);
 
 #endif

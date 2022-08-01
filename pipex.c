@@ -6,7 +6,7 @@
 /*   By: obouizga <obouizga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/05 13:52:40 by obouizga          #+#    #+#             */
-/*   Updated: 2022/05/07 18:58:24 by obouizga         ###   ########.fr       */
+/*   Updated: 2022/08/01 15:49:38 by obouizga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ int	main(int ac, char **av, char **env)
 		write_to_outfile(args.out_f);
 		execve(args.cmd_2->cmd_path, args.cmd_2->cmd_op, env);
 	}
-	close_fds(fds);
+	// close_fds(fds);
 	wait_all();
 	return (0);
 }
