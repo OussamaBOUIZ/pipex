@@ -6,7 +6,7 @@
 /*   By: obouizga <obouizga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/26 12:19:14 by obouizga          #+#    #+#             */
-/*   Updated: 2022/05/06 11:12:08 by obouizga         ###   ########.fr       */
+/*   Updated: 2022/08/08 12:36:32 by obouizga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	check_args_bonus(t_b_arg args_b)
 		perror(0);
 		exit(EXIT_FAILURE);
 	}
-	while (++i < args_b.n)
+	while (++i < args_b.n_cmd)
 	{
 		if (!args_b.cmds[i])
 		{

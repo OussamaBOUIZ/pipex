@@ -1,0 +1,6 @@
+*.o
+zsandbox/
+ppx
+pipex
+outf
+*.txt
