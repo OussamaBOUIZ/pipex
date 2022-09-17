@@ -5,26 +5,40 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: obouizga <obouizga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/19 11:35:29 by obouizga          #+#    #+#             */
-/*   Updated: 2022/05/07 14:20:31 by obouizga         ###   ########.fr       */
+/*   Created: 2022/09/17 15:53:53 by obouizga          #+#    #+#             */
+/*   Updated: 2022/09/17 15:54:11 by obouizga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-void	check_args(t_arg args)
+
+int	check_slash(char *s)
 {
-// 	if (args.in_f == -1)
-// 	{
-// 		printf("fd's %i\n", args.in_f);
-// 		perror(0);
-// 	}
-	// if (!(args.cmd_1) || !(args.cmd_2))
-	// {
-	// 	ft_putstr_fd("COMMAND NOT FOUND\n", 2);
-	// }
-	// printf("VALID ARGUMENTS\n");
-	(void)args;
-	int n = 8;
-	n--;
+	while (*s)
+		if (*(s++) == '/')
+			return (1);
+	return (0);
+}
+
+
+void	check_args_bonus(t_b_arg args_b)
+{
+	int	i;
+
+	i = -1;
+	if (args_b.in_f == -1)
+	{
+		perror(0);
+		exit(EXIT_FAILURE);
+	}
+	while (++i < args_b.n_cmd)
+	{
+		if (!args_b.cmds[i])
+		{
+			ft_putstr_fd("COMMAND NOT FOUND\n", 2);
+			exit(EXIT_FAILURE);
+		}
+	}
+	// printf("VALID ARGUMENTS DUDE\n");
 }

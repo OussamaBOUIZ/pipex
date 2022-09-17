@@ -1,6 +1,7 @@
 *.o
 zsandbox/
+.vscode/
+t/
+sh/
 ppx
 pipex
-outf
-*.txt
