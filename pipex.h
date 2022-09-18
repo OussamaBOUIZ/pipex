@@ -6,7 +6,7 @@
 /*   By: obouizga <obouizga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/08 17:48:30 by obouizga          #+#    #+#             */
-/*   Updated: 2022/09/17 16:55:11 by obouizga         ###   ########.fr       */
+/*   Updated: 2022/09/18 08:53:36 by obouizga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ void	check_args(t_arg args);
 void	check_args_bonus(t_b_arg args_b);
 t_cmd	*get_cmd(char *s, char **env);
 void	first_cmd(int infile, int *fds, t_b_arg args_b, char **env);
-void	last_cmd(int outfile, int *fds, t_b_arg args_b, char **env);
+void	last_cmd(int outfile, t_b_arg args_b, char **env);
 void	mid_cmd(int *fildes, int i, t_b_arg args_b, char **env);
 void	creat_link_exec(int *fildes, t_b_arg args_b, char **env);
 t_b_arg	get_args_bonus(int ac, char **av, char **env);
